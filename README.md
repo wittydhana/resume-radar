@@ -44,7 +44,7 @@ python generate_samples.py
 python main.py
 ```
 
-Use embedding-based semantic similarity (optional):
+Use embedding-based semantic similarity (optional, recommended for best accuracy):
 
 ```powershell
 python main.py --use-embeddings
@@ -73,9 +73,9 @@ The CSV/JSON output includes:
 - `risk`
 - `decision`
 - `excerpt`
-- `matched_must`
-- `missing_must`
-- `matched_nice`
+- `matched_required`
+- `missing_required`
+- `matched_optional`
 - `reason`
 
 `ranked_report.txt` summarizes the top candidates and decision counts.
@@ -118,7 +118,7 @@ Run a small labeled validation and compare TF-IDF vs embeddings:
 python evaluate.py
 ```
 
-The current validation dataset returns perfect accuracy on both TF-IDF and embeddings for the provided labels, with all Shortlist/Watchlist/Reject categories matching the expected outcome.
+The current validation dataset shows perfect accuracy for the embedding-based path, while the TF-IDF path remains strong with a more conservative matching profile. Evaluation now includes macro precision, macro recall, and macro F1 to measure ranking quality more thoroughly.
 
 This writes `validation/report.md` summarizing accuracy and confusion for a tiny validation set.
 
