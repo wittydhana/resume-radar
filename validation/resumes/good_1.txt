@@ -1,0 +1,4 @@
+Anika Rao
+Senior NLP Engineer with 5 years experience building production NLP pipelines. Strong in Python, pandas, scikit-learn, SQL, and transformer models. Led information extraction and classification projects.
+
+Skills: Python, NLP, machine learning, pandas, scikit-learn, SQL

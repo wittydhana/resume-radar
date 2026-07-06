@@ -1,0 +1,4 @@
+Meera Iyer
+Applied scientist focusing on text analytics and NLP. Built named entity recognition and text classification systems using Python and transformers. Strong SQL skills.
+
+Skills: NLP, Python, transformers, SQL, pandas

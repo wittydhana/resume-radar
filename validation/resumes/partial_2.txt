@@ -1,0 +1,4 @@
+Priyanka Desai
+Junior ML Engineer internship experience. Built simple classification models with scikit-learn and used pandas for preprocessing. Limited production experience.
+
+Skills: Python, pandas, scikit-learn

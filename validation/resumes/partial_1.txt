@@ -1,0 +1,4 @@
+Dev Shah
+Data Analyst who built dashboards and ETL jobs. Familiar with Python and pandas, limited exposure to machine learning projects.
+
+Skills: Python, pandas, SQL

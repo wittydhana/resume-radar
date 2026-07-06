@@ -1,0 +1,4 @@
+Rahul Patel
+Machine Learning Engineer experienced in NLP, model evaluation, and data pipelines. Comfortable with Python, scikit-learn, pandas, and SQL databases. Implemented production model monitoring.
+
+Skills: Python, NLP, machine learning, pandas, scikit-learn, SQL

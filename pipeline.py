@@ -61,13 +61,20 @@ def score_resume(jd_text: str, resume_text: str, use_embeddings: bool = False):
     missing_must = [t for t in required_terms if t not in rs]
     matched_nice = [t for t in optional_terms if t in rs]
 
-    score = similarity * 0.5 + 8 * len(matched_must) + 2.5 * len(matched_nice) - 12 * len(missing_must)
+    # adjust weights to better surface partially-matching candidates
+    score = similarity * 0.5 + 12 * len(matched_must) + 2.5 * len(matched_nice) - 4 * len(missing_must)
     score = round(max(0.0, min(100.0, score)), 1)
 
     risk = round(min(100, 20 * len(missing_must) + max(0, 40 - score)), 1)
+    # Adjusted decision boundaries: allow more forgiving Watchlist for partial matches
     if score >= 55 and len(missing_must) == 0:
         decision = "Shortlist"
-    elif score >= 40:
+    elif score >= 50 and len(matched_must) >= max(1, len(required_terms) - 1):
+        decision = "Shortlist"
+    # relaxed shortlist for near-complete matches
+    elif score >= 44 and len(matched_must) >= max(1, len(required_terms) - 2):
+        decision = "Shortlist"
+    elif score >= 25:
         decision = "Watchlist"
     else:
         decision = "Reject"

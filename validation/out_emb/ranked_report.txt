@@ -1,14 +1,18 @@
-Resume screening report for 3 resumes from validation\resumes
+Resume screening report for 15 resumes from validation\resumes
 
 Decision counts:
-- Shortlist: 1
-- Watchlist: 0
-- Reject: 2
+- Shortlist: 7
+- Watchlist: 3
+- Reject: 5
 
 Top candidates:
-1. good_candidate.txt | Shortlist | score=66.9 | similarity=37.9 | risk=0.0
+1. good_candidate.txt | Shortlist | score=90.9 | similarity=37.9 | risk=0.0
    reason: TF-IDF=37.9; matched_must=6; matched_nice=0; missing_must=0
-2. partial_candidate.txt | Reject | score=16.4 | similarity=16.7 | risk=63.6
+2. good_2.txt | Shortlist | score=89.2 | similarity=34.4 | risk=0.0
+   reason: TF-IDF=34.4; matched_must=6; matched_nice=0; missing_must=0
+3. good_1.txt | Shortlist | score=87.9 | similarity=31.7 | risk=0.0
+   reason: TF-IDF=31.7; matched_must=6; matched_nice=0; missing_must=0
+4. good_4.txt | Shortlist | score=85.2 | similarity=26.3 | risk=0.0
+   reason: TF-IDF=26.3; matched_must=6; matched_nice=0; missing_must=0
+5. partial_candidate.txt | Shortlist | score=48.4 | similarity=16.7 | risk=40.0
    reason: TF-IDF=16.7; matched_must=4; matched_nice=0; missing_must=2
-3. unrelated_candidate.txt | Reject | score=0.0 | similarity=0.0 | risk=100.0
-   reason: TF-IDF=0.0; matched_must=0; matched_nice=0; missing_must=6

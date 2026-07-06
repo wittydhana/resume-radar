@@ -1,0 +1,4 @@
+Leela Menon
+Data science intern experience; worked with pandas and visualization tools. Some exposure to model development using scikit-learn.
+
+Skills: pandas, Python, scikit-learn

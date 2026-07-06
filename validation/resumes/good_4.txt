@@ -1,0 +1,4 @@
+Suman Verma
+NLP Researcher with publications in text classification. Hands-on experience with Python, scikit-learn, and pandas. Worked on production data engineers to deploy models.
+
+Skills: Python, NLP, machine learning, scikit-learn, pandas, SQL

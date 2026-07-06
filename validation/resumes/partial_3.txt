@@ -1,0 +1,4 @@
+Arnav Kumar
+Early-career ML practitioner. Completed coursework in NLP and ML, has project experience with text classification and basic SQL.
+
+Skills: Python, NLP, SQL

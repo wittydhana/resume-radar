@@ -1,4 +1,5 @@
 # Resume Radar
+![CI](https://github.com/wittydhana/resume-radar/workflows/CI/badge.svg)
 
 Resume Radar is a command-line resume screening agent built for the Rooman AI Challenge.
 It ranks resumes against a job description using NLP similarity and recruiter-style keyword matching.

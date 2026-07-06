@@ -1,23 +1,27 @@
 # Validation Report
 
-TF-IDF accuracy: 0.67
+TF-IDF accuracy: 0.87
 
 TF-IDF confusion (expected,predicted):
 
-- ('Shortlist', 'Shortlist'): 1
+- ('Shortlist', 'Shortlist'): 5
 
-- ('Watchlist', 'Reject'): 1
+- ('Watchlist', 'Shortlist'): 2
 
-- ('Reject', 'Reject'): 1
+- ('Reject', 'Reject'): 5
+
+- ('Watchlist', 'Watchlist'): 3
 
 
 
-Embeddings accuracy: 0.67
+Embeddings accuracy: 0.87
 
 Embeddings confusion (expected,predicted):
 
-- ('Shortlist', 'Shortlist'): 1
+- ('Shortlist', 'Shortlist'): 5
 
-- ('Watchlist', 'Reject'): 1
+- ('Watchlist', 'Shortlist'): 2
 
-- ('Reject', 'Reject'): 1
+- ('Reject', 'Reject'): 5
+
+- ('Watchlist', 'Watchlist'): 3
