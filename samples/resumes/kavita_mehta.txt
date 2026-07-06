@@ -1,0 +1,13 @@
+Kavita Mehta
+Analytics Engineer
+
+Summary:
+Analytics engineer with strong SQL, Python scripting, and data pipeline experience.
+
+Experience:
+- Built ETL processes using Python and SQL for customer analytics.
+- Designed reusable data transformations and validation checks.
+- Worked with stakeholders to define metrics and reporting needs.
+
+Skills:
+Python, SQL, data engineering, analytics, pandas

@@ -1,0 +1,4 @@
+Priya Singh
+Experienced ML engineer. Built NLP pipelines, used Python, pandas, scikit-learn and SQL databases. Worked on text classification and information extraction.
+
+Skills: Python, SQL, NLP, machine learning, pandas, scikit-learn

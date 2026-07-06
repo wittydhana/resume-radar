@@ -1,0 +1,13 @@
+Maya Rao
+Data Analyst
+
+Summary:
+Analyst with strong SQL and reporting experience. Interested in AI and machine learning, with beginner exposure to Python and pandas.
+
+Experience:
+- Created dashboards and data summaries with SQL and Excel.
+- Supported business reporting for a consumer products team.
+- Participated in a small Python notebook project for data cleaning.
+
+Skills:
+SQL, Excel, dashboarding, Python, pandas

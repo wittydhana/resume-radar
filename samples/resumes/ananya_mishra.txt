@@ -1,0 +1,13 @@
+Ananya Mishra
+Data Science Intern
+
+Summary:
+Data science intern with coursework in machine learning, NLP, and analytics.
+
+Experience:
+- Built exploratory data analysis reports and dashboards.
+- Applied classification models using sklearn and pandas.
+- Worked with SQL databases to clean and join datasets.
+
+Skills:
+Python, SQL, pandas, machine learning, NLP, statistics

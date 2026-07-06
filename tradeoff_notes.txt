@@ -1,0 +1,33 @@
+Approach and tradeoffs
+
+This resume screening agent is designed for a strong 24-hour challenge submission.
+It balances practical document handling with transparent scoring and recruiter-style reasoning.
+
+Design choices
+- Use TF-IDF cosine similarity because it is reliable, explainable, and fast for a small resume set.
+- Add explicit must-have and nice-to-have matching so the scores are grounded in the job description.
+- Support `.txt`, `.pdf`, and `.docx` resumes to demonstrate real-world resume ingestion.
+- Keep the agent as a CLI tool for reproducibility and easy reviewer execution.
+
+Scoring method
+- Extract resume text, normalize it, and compute TF-IDF similarity against the JD.
+- Count matched required skills and matched desirable skills.
+- Apply a score formula: 0.5 * TF-IDF + 8 * matched_must + 2.5 * matched_nice - 12 * missing_must.
+- Use decision bands to produce Shortlist, Watchlist, or Reject.
+
+Deliverables included
+- Job description file: `samples/job_description.txt`
+- Sample resume folder: `samples/resumes`
+- Ranked output files: `output/ranked_results.csv`, `output/ranked_results.json`
+- Scoring explanation: `output/scoring_note.txt`
+- Design notes: `tradeoff_notes.txt`
+
+Limitations
+- The current parser handles text-based PDFs but not scanned images.
+- The scoring is heuristic; it is not a learned ranking model.
+- Some strong candidates may use synonyms that are not covered by the current keyword list.
+
+Future improvements
+- Add semantic embeddings or a retrieval-augmented answer layer for better phrase matching.
+- Add layout-aware PDF extraction for real resume templates.
+- Add a simple web or browser UI for recruiter interaction and file upload.

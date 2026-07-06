@@ -1,0 +1,21 @@
+Junior AI Research Associate
+
+We are hiring a Junior AI Research Associate to support AI product development and data analysis.
+
+Required skills:
+- Python programming
+- SQL querying
+- NLP / natural language processing
+- Machine learning fundamentals
+- Pandas and scikit-learn
+
+Nice-to-have skills:
+- Docker
+- AWS
+- LLM APIs
+- FastAPI or Streamlit
+
+Ideal candidate profile:
+- Has hands-on experience building data-driven projects
+- Can read research papers and translate ideas into practical prototypes
+- Can communicate findings clearly and work with a small team

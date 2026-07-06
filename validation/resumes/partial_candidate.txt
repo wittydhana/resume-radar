@@ -1,0 +1,4 @@
+Rohan Mehta
+Data analyst with SQL and pandas experience. Beginner exposure to Python and machine learning projects.
+
+Skills: SQL, pandas, Python

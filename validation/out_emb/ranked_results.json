@@ -1,0 +1,41 @@
+[
+  {
+    "rank":1,
+    "file":"good_candidate.txt",
+    "score":66.9,
+    "similarity":37.9,
+    "risk":0.0,
+    "decision":"Shortlist",
+    "excerpt":"Priya Singh Experienced ML engineer. Built NLP pipelines, used Python, pandas, scikit-learn and SQL databases. Worked on text classification and information extraction. Skills: Pyt",
+    "matched_must":"python, sql, nlp, machine learning, pandas, scikit",
+    "missing_must":"",
+    "matched_nice":"",
+    "reason":"TF-IDF=37.9; matched_must=6; matched_nice=0; missing_must=0"
+  },
+  {
+    "rank":2,
+    "file":"partial_candidate.txt",
+    "score":16.4,
+    "similarity":16.7,
+    "risk":63.6,
+    "decision":"Reject",
+    "excerpt":"Rohan Mehta Data analyst with SQL and pandas experience. Beginner exposure to Python and machine learning projects. Skills: SQL, pandas, Python",
+    "matched_must":"python, sql, machine learning, pandas",
+    "missing_must":"nlp, scikit",
+    "matched_nice":"",
+    "reason":"TF-IDF=16.7; matched_must=4; matched_nice=0; missing_must=2"
+  },
+  {
+    "rank":3,
+    "file":"unrelated_candidate.txt",
+    "score":0.0,
+    "similarity":0.0,
+    "risk":100.0,
+    "decision":"Reject",
+    "excerpt":"Kiran Joshi Sales and account manager with extensive CRM and sales cycle experience. No programming background. Skills: Sales, CRM, negotiation",
+    "matched_must":"",
+    "missing_must":"python, sql, nlp, machine learning, pandas, scikit",
+    "matched_nice":"",
+    "reason":"TF-IDF=0.0; matched_must=0; matched_nice=0; missing_must=6"
+  }
+]

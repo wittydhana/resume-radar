@@ -1,0 +1,3 @@
+Junior AI Research Associate
+
+Required: Python, SQL, NLP, machine learning, pandas, scikit-learn

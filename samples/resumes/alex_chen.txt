@@ -1,0 +1,13 @@
+Alex Chen
+Software Engineer
+
+Summary:
+Python developer with 2 years of experience building data pipelines and NLP prototypes. Hands-on with pandas, scikit-learn, SQL, and text analytics.
+
+Experience:
+- Built a document classification pipeline using Python, pandas, and scikit-learn.
+- Worked with SQL databases and created ETL scripts for internal reporting.
+- Developed a small NLP prototype for topic extraction.
+
+Skills:
+Python, SQL, NLP, pandas, scikit-learn, machine learning

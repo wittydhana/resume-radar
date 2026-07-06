@@ -1,0 +1,13 @@
+Deepak Kumar
+Research Assistant
+
+Summary:
+Recent graduate in computer science with a strong interest in NLP and machine learning. Built coursework projects in Python, scikit-learn, and text classification.
+
+Experience:
+- Implemented sentiment analysis models using Python and scikit-learn.
+- Built preprocessing pipelines for text data and evaluated model performance.
+- Worked on a team project involving topic modeling and NLP experiments.
+
+Skills:
+Python, NLP, machine learning, scikit-learn, data preprocessing

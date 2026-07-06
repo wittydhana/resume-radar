@@ -1,0 +1,4 @@
+file,expected
+resumes/good_candidate.txt,Shortlist
+resumes/partial_candidate.txt,Watchlist
+resumes/unrelated_candidate.txt,Reject

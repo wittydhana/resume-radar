@@ -1,0 +1,13 @@
+Arjun Rao
+Graduate Research Assistant
+
+Summary:
+Graduate researcher working on machine learning experiments and academic NLP projects.
+
+Experience:
+- Conducted NLP research using Python and scientific computing.
+- Published analyses on text classification and model interpretability.
+- Developed reproducible notebooks and shared results with advisors.
+
+Skills:
+Python, NLP, machine learning, research, pandas
