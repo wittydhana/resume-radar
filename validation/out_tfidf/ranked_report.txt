@@ -1,18 +1,21 @@
 Resume screening report for 15 resumes from validation\resumes
 
+Required skills extracted: sql, nlp, machine learning, pandas, scikit-learn
+Optional skills extracted: none
+
 Decision counts:
-- Shortlist: 7
-- Watchlist: 3
+- Shortlist: 5
+- Watchlist: 5
 - Reject: 5
 
 Top candidates:
-1. good_candidate.txt | Shortlist | score=90.9 | similarity=37.9 | risk=0.0
-   reason: TF-IDF=37.9; matched_must=6; matched_nice=0; missing_must=0
-2. good_2.txt | Shortlist | score=89.2 | similarity=34.4 | risk=0.0
-   reason: TF-IDF=34.4; matched_must=6; matched_nice=0; missing_must=0
-3. good_1.txt | Shortlist | score=87.9 | similarity=31.7 | risk=0.0
-   reason: TF-IDF=31.7; matched_must=6; matched_nice=0; missing_must=0
-4. good_4.txt | Shortlist | score=85.2 | similarity=26.3 | risk=0.0
-   reason: TF-IDF=26.3; matched_must=6; matched_nice=0; missing_must=0
-5. partial_candidate.txt | Shortlist | score=48.4 | similarity=16.7 | risk=40.0
-   reason: TF-IDF=16.7; matched_must=4; matched_nice=0; missing_must=2
+1. good_1.txt | Shortlist | score=69.5 | similarity=65.4 | risk=10.0
+   reason: Candidate: good_1.txt | Score: 69.5 | Semantic similarity: 65.4% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Extracted experience: 5 years | Recommendation: strong match for the role.
+2. good_candidate.txt | Shortlist | score=60.5 | similarity=67.8 | risk=20.0
+   reason: Candidate: good_candidate.txt | Score: 60.5 | Semantic similarity: 67.8% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
+3. good_4.txt | Shortlist | score=60.0 | similarity=66.6 | risk=20.0
+   reason: Candidate: good_4.txt | Score: 60.0 | Semantic similarity: 66.6% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
+4. good_3.txt | Shortlist | score=58.1 | similarity=62.4 | risk=20.0
+   reason: Candidate: good_3.txt | Score: 58.1 | Semantic similarity: 62.4% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
+5. good_2.txt | Shortlist | score=58.0 | similarity=62.3 | risk=20.0
+   reason: Candidate: good_2.txt | Score: 58.0 | Semantic similarity: 62.3% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.

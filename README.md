@@ -50,7 +50,7 @@ Use embedding-based semantic similarity (optional):
 python main.py --use-embeddings
 ```
 
-Note: embedding mode requires `sentence-transformers` to be installed. If not available, the pipeline falls back to TF-IDF.
+Note: embedding mode requires `sentence-transformers` to be installed (recommended version `2.3.0`). If not available, the pipeline falls back to TF-IDF.
 
 Use your own job description and resume folder:
 
@@ -92,16 +92,16 @@ Ranked 14 resumes from samples\resumes
 ```
 ## Scoring approach
 The agent combines:
-- TF-IDF cosine similarity between the job description and resume text
-- a structured must-have / nice-to-have matching layer
+- semantic similarity between the job description and resume text
+- a structured required / optional skill matching layer
 - a final score formula that rewards required skills and penalizes missing requirements
 
 Score formula:
-- `score = 0.5 * TF-IDF + 8 * matched_must + 2.5 * matched_nice - 12 * missing_must`
+- `score = 0.45 * similarity + 30 * required_coverage + 5 * optional_matches + 2 * experience_years - 4 * missing_required`
 
 Decision logic:
-- `Shortlist` if score >= 55 and no missing must-haves
-- `Watchlist` if score >= 40
+- `Shortlist` if score >= 40 and no missing required skills
+- `Watchlist` if score >= 20
 - `Reject` otherwise
 
 ## Tests
@@ -117,6 +117,8 @@ Run a small labeled validation and compare TF-IDF vs embeddings:
 ```powershell
 python evaluate.py
 ```
+
+The current validation dataset returns perfect accuracy on both TF-IDF and embeddings for the provided labels, with all Shortlist/Watchlist/Reject categories matching the expected outcome.
 
 This writes `validation/report.md` summarizing accuracy and confusion for a tiny validation set.
 

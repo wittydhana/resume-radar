@@ -1,1 +1,1 @@
-Score formula: 0.5*TF-IDF + 8*matched_must + 2.5*matched_nice - 12*missing_must. Decision = Shortlist if score>=55 and no missing must-have; Watchlist if score>=40; otherwise Reject.
+Score formula: 0.45*semantic_similarity + 30*required_coverage + 5*optional_matches + 2*experience_years - 4*missing_required. Decision = Shortlist if score>=40 and no missing required; Watchlist if score>=20; otherwise Reject.

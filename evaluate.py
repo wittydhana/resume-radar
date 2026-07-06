@@ -1,14 +1,17 @@
-import csv
+﻿import csv
+import math
+from collections import Counter
 from pathlib import Path
 from pipeline import run_screening
-import pandas as pd
 
-BASE = Path("validation")
-JD = BASE / "jd.txt"
-RES_DIR = BASE / "resumes"
-OUT_TFIDF = BASE / "out_tfidf"
-OUT_EMB = BASE / "out_emb"
-LABELS = BASE / "labels.csv"
+BASE = Path('validation')
+JD = BASE / 'jd.txt'
+RES_DIR = BASE / 'resumes'
+OUT_TFIDF = BASE / 'out_tfidf'
+OUT_EMB = BASE / 'out_emb'
+LABELS = BASE / 'labels.csv'
+
+RELEVANCE = {'Shortlist': 2, 'Watchlist': 1, 'Reject': 0}
 
 
 def load_labels(path):
@@ -16,50 +19,76 @@ def load_labels(path):
     with open(path, newline='', encoding='utf-8') as fh:
         reader = csv.DictReader(fh)
         for r in reader:
-            # normalize to basename so paths like 'resumes/foo.txt' match pipeline output 'foo.txt'
-            key = Path(r['file']).name
-            d[key] = r['expected']
+            d[Path(r['file']).name] = r['expected']
     return d
 
 
 def score_results(df, labels):
     preds = df.set_index('file')['decision'].to_dict()
+    y_true = [labels[f] for f in labels]
+    y_pred = [preds.get(f, 'Reject') for f in labels]
+    cm = Counter(zip(y_true, y_pred))
+
     total = len(labels)
-    correct = sum(1 for f,v in labels.items() if preds.get(f)==v)
-    acc = correct/total if total else 0.0
-    # confusion
-    from collections import Counter
-    pairs = [(labels[f], preds.get(f, 'Missing')) for f in labels]
-    conf = Counter(pairs)
-    return acc, conf
+    accuracy = sum(1 for t, p in zip(y_true, y_pred) if t == p) / total
+
+    metrics = {}
+    for label in ['Shortlist', 'Watchlist', 'Reject']:
+        tp = cm[(label, label)]
+        fp = sum(cm[(other, label)] for other in ['Shortlist', 'Watchlist', 'Reject'] if other != label)
+        fn = sum(cm[(label, other)] for other in ['Shortlist', 'Watchlist', 'Reject'] if other != label)
+        precision = tp / (tp + fp) if tp + fp else 0.0
+        recall = tp / (tp + fn) if tp + fn else 0.0
+        f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
+        metrics[label] = {'precision': precision, 'recall': recall, 'f1': f1}
+
+    ranking = list(df['file'])
+    top5 = ranking[:5]
+    top5_accuracy = sum(1 for f in top5 if labels.get(f) == 'Shortlist') / min(5, len(labels))
+    ndcg = compute_ndcg(ranking, labels)
+    return accuracy, cm, metrics, top5_accuracy, ndcg
+
+
+def compute_ndcg(ranking, labels):
+    def dcg(scores):
+        return sum((2**rel - 1) / (math.log2(idx + 2)) for idx, rel in enumerate(scores))
+
+    relevances = [RELEVANCE[labels.get(f, 'Reject')] for f in ranking]
+    ideal = sorted(relevances, reverse=True)
+    actual = dcg(relevances)
+    ideal_dcg = dcg(ideal)
+    return actual / ideal_dcg if ideal_dcg > 0 else 0.0
 
 
 def run_and_eval(use_embeddings=False, out=OUT_TFIDF):
     out.mkdir(parents=True, exist_ok=True)
     df = run_screening(JD, RES_DIR, out, use_embeddings=use_embeddings)
     labels = load_labels(LABELS)
-    acc, conf = score_results(df, labels)
-    return df, acc, conf
+    return df, score_results(df, labels)
 
 
-def write_report(tf_acc, tf_conf, emb_acc, emb_conf):
+def write_report(tf_results, emb_results):
     r = BASE / 'report.md'
-    lines = ["# Validation Report\n"]
-    lines.append(f"TF-IDF accuracy: {tf_acc:.2f}\n")
-    lines.append("TF-IDF confusion (expected,predicted):\n")
-    for k,v in tf_conf.items():
-        lines.append(f"- {k}: {v}\n")
-    lines.append('\n')
-    lines.append(f"Embeddings accuracy: {emb_acc:.2f}\n")
-    lines.append("Embeddings confusion (expected,predicted):\n")
-    for k,v in emb_conf.items():
-        lines.append(f"- {k}: {v}\n")
+    lines = ['# Validation Report', '']
+    for label, (accuracy, cm, metrics, top5, ndcg) in [('TF-IDF', tf_results), ('Embeddings', emb_results)]:
+        lines.append(f'## {label}')
+        lines.append(f'- Accuracy: {accuracy:.2f}')
+        lines.append(f'- Top-5 accuracy: {top5:.2f}')
+        lines.append(f'- NDCG: {ndcg:.2f}')
+        lines.append('')
+        lines.append('### Confusion matrix')
+        for k, v in cm.items():
+            lines.append(f'- {k}: {v}')
+        lines.append('')
+        for cls, m in metrics.items():
+            lines.append(f'- {cls} precision: {m["precision"]:.2f}, recall: {m["recall"]:.2f}, f1: {m["f1"]:.2f}')
+        lines.append('')
     r.write_text('\n'.join(lines), encoding='utf-8')
-    print(f"Wrote {r}")
+    print(f'Wrote {r}')
 
 
 if __name__ == '__main__':
-    df_tf, tf_acc, tf_conf = run_and_eval(use_embeddings=False, out=OUT_TFIDF)
-    df_emb, emb_acc, emb_conf = run_and_eval(use_embeddings=True, out=OUT_EMB)
-    write_report(tf_acc, tf_conf, emb_acc, emb_conf)
+    df_tf, tf_results = run_and_eval(use_embeddings=False, out=OUT_TFIDF)
+    df_emb, emb_results = run_and_eval(use_embeddings=True, out=OUT_EMB)
+    write_report(tf_results, emb_results)
     print('Done')
