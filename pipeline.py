@@ -5,12 +5,20 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from parser_utils import extract_text
 
-# Optional embeddings support (uses sentence-transformers if available)
-try:
-    from sentence_transformers import SentenceTransformer, util
-    _EMBED_MODEL = SentenceTransformer('all-MiniLM-L6-v2')
-except Exception:
-    _EMBED_MODEL = None
+_EMBED_MODEL = None
+_EMBED_MODEL_NAME = 'all-MiniLM-L6-v2'
+
+
+def load_embed_model():
+    global _EMBED_MODEL
+    if _EMBED_MODEL is not None:
+        return _EMBED_MODEL
+    try:
+        from sentence_transformers import SentenceTransformer
+        _EMBED_MODEL = SentenceTransformer(_EMBED_MODEL_NAME)
+    except Exception:
+        _EMBED_MODEL = None
+    return _EMBED_MODEL
 
 SYNONYM_MAP = {
     'py': 'python',
@@ -169,15 +177,21 @@ def compute_similarity_tfidf(jd_text: str, resume_text: str) -> float:
 
 
 def compute_similarity_embeddings(jd_text: str, resume_text: str) -> float:
-    if _EMBED_MODEL is None:
+    model = load_embed_model()
+    if model is None:
         return compute_similarity_tfidf(jd_text, resume_text)
+    try:
+        from sentence_transformers.util import cos_sim
+    except Exception:
+        return compute_similarity_tfidf(jd_text, resume_text)
+
     jd = clean_text(jd_text)
     rs = clean_text(resume_text)
     if not jd or not rs:
         return 0.0
-    emb_jd = _EMBED_MODEL.encode(jd, convert_to_tensor=True)
-    emb_rs = _EMBED_MODEL.encode(rs, convert_to_tensor=True)
-    sim = util.cos_sim(emb_jd, emb_rs).item()
+    emb_jd = model.encode(jd, convert_to_tensor=True)
+    emb_rs = model.encode(rs, convert_to_tensor=True)
+    sim = cos_sim(emb_jd, emb_rs).item()
     return float(sim) * 100
 
 
@@ -217,16 +231,18 @@ def extract_experience_years(text: str) -> int:
 def build_explanation(resume_name: str, required: list[str], optional: list[str], matched_required: list[str], matched_optional: list[str], missing_required: list[str], similarity: float, score: float, experience: int) -> str:
     lines = [f'Candidate: {resume_name}', f'Score: {score}', f'Semantic similarity: {round(similarity, 1)}%']
     if required:
-        lines.append(f'Required skills found: {', '.join(matched_required) or 'None'}')
-        lines.append(f'Missing required skills: {', '.join(missing_required) or 'None'}')
+        lines.append(f'Required skills found: {', '.join(matched_required) if matched_required else 'None'}')
+        lines.append(f'Missing required skills: {', '.join(missing_required) if missing_required else 'None'}')
     if optional:
-        lines.append(f'Optional skills found: {', '.join(matched_optional) or 'None'}')
+        lines.append(f'Optional skills found: {', '.join(matched_optional) if matched_optional else 'None'}')
     if experience:
         lines.append(f'Extracted experience: {experience} years')
     if missing_required:
         lines.append('Recommendation: review missing requirements before shortlisting.')
     else:
         lines.append('Recommendation: strong match for the role.')
+    lines.append(f'Required coverage: {len(matched_required)}/{len(required)}')
+    lines.append(f'Optional matches: {len(matched_optional)}')
     return ' | '.join(lines)
 
 

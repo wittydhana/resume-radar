@@ -4,18 +4,18 @@ Required skills extracted: sql, nlp, machine learning, pandas, scikit-learn
 Optional skills extracted: none
 
 Decision counts:
-- Shortlist: 5
-- Watchlist: 5
-- Reject: 5
+- Shortlist: 4
+- Watchlist: 1
+- Reject: 10
 
 Top candidates:
-1. good_1.txt | Shortlist | score=69.5 | similarity=65.4 | risk=10.0
-   reason: Candidate: good_1.txt | Score: 69.5 | Semantic similarity: 65.4% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Extracted experience: 5 years | Recommendation: strong match for the role.
-2. good_candidate.txt | Shortlist | score=60.5 | similarity=67.8 | risk=20.0
-   reason: Candidate: good_candidate.txt | Score: 60.5 | Semantic similarity: 67.8% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
-3. good_4.txt | Shortlist | score=60.0 | similarity=66.6 | risk=20.0
-   reason: Candidate: good_4.txt | Score: 60.0 | Semantic similarity: 66.6% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
-4. good_3.txt | Shortlist | score=58.1 | similarity=62.4 | risk=20.0
-   reason: Candidate: good_3.txt | Score: 58.1 | Semantic similarity: 62.4% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
-5. good_2.txt | Shortlist | score=58.0 | similarity=62.3 | risk=20.0
-   reason: Candidate: good_2.txt | Score: 58.0 | Semantic similarity: 62.3% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role.
+1. good_1.txt | Shortlist | score=54.3 | similarity=31.7 | risk=10.0
+   reason: Candidate: good_1.txt | Score: 54.3 | Semantic similarity: 31.7% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Extracted experience: 5 years | Recommendation: strong match for the role. | Required coverage: 5/5 | Optional matches: 0
+2. good_candidate.txt | Shortlist | score=47.0 | similarity=37.9 | risk=20.0
+   reason: Candidate: good_candidate.txt | Score: 47.0 | Semantic similarity: 37.9% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role. | Required coverage: 5/5 | Optional matches: 0
+3. good_2.txt | Shortlist | score=45.5 | similarity=34.4 | risk=20.0
+   reason: Candidate: good_2.txt | Score: 45.5 | Semantic similarity: 34.4% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role. | Required coverage: 5/5 | Optional matches: 0
+4. good_4.txt | Shortlist | score=41.8 | similarity=26.3 | risk=20.0
+   reason: Candidate: good_4.txt | Score: 41.8 | Semantic similarity: 26.3% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role. | Required coverage: 5/5 | Optional matches: 0
+5. good_3.txt | Watchlist | score=34.3 | similarity=9.5 | risk=20.0
+   reason: Candidate: good_3.txt | Score: 34.3 | Semantic similarity: 9.5% | Required skills found: sql, nlp, machine learning, pandas, scikit-learn | Missing required skills: None | Recommendation: strong match for the role. | Required coverage: 5/5 | Optional matches: 0

@@ -33,6 +33,9 @@ def score_results(df, labels):
     accuracy = sum(1 for t, p in zip(y_true, y_pred) if t == p) / total
 
     metrics = {}
+    precision_sum = 0.0
+    recall_sum = 0.0
+    f1_sum = 0.0
     for label in ['Shortlist', 'Watchlist', 'Reject']:
         tp = cm[(label, label)]
         fp = sum(cm[(other, label)] for other in ['Shortlist', 'Watchlist', 'Reject'] if other != label)
@@ -41,12 +44,18 @@ def score_results(df, labels):
         recall = tp / (tp + fn) if tp + fn else 0.0
         f1 = 2 * precision * recall / (precision + recall) if precision + recall else 0.0
         metrics[label] = {'precision': precision, 'recall': recall, 'f1': f1}
+        precision_sum += precision
+        recall_sum += recall
+        f1_sum += f1
 
+    macro_precision = precision_sum / 3
+    macro_recall = recall_sum / 3
+    macro_f1 = f1_sum / 3
     ranking = list(df['file'])
     top5 = ranking[:5]
     top5_accuracy = sum(1 for f in top5 if labels.get(f) == 'Shortlist') / min(5, len(labels))
     ndcg = compute_ndcg(ranking, labels)
-    return accuracy, cm, metrics, top5_accuracy, ndcg
+    return accuracy, cm, metrics, top5_accuracy, ndcg, macro_precision, macro_recall, macro_f1
 
 
 def compute_ndcg(ranking, labels):
@@ -70,11 +79,14 @@ def run_and_eval(use_embeddings=False, out=OUT_TFIDF):
 def write_report(tf_results, emb_results):
     r = BASE / 'report.md'
     lines = ['# Validation Report', '']
-    for label, (accuracy, cm, metrics, top5, ndcg) in [('TF-IDF', tf_results), ('Embeddings', emb_results)]:
+    for label, (accuracy, cm, metrics, top5, ndcg, mp, mr, mf1) in [('TF-IDF', tf_results), ('Embeddings', emb_results)]:
         lines.append(f'## {label}')
         lines.append(f'- Accuracy: {accuracy:.2f}')
         lines.append(f'- Top-5 accuracy: {top5:.2f}')
         lines.append(f'- NDCG: {ndcg:.2f}')
+        lines.append(f'- Macro precision: {mp:.2f}')
+        lines.append(f'- Macro recall: {mr:.2f}')
+        lines.append(f'- Macro F1: {mf1:.2f}')
         lines.append('')
         lines.append('### Confusion matrix')
         for k, v in cm.items():
