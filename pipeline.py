@@ -231,19 +231,19 @@ def extract_experience_years(text: str) -> int:
 def build_explanation(resume_name: str, required: list[str], optional: list[str], matched_required: list[str], matched_optional: list[str], missing_required: list[str], similarity: float, score: float, experience: int) -> str:
     lines = [f'Candidate: {resume_name}', f'Score: {score}', f'Semantic similarity: {round(similarity, 1)}%']
     if required:
-        lines.append(f'Required skills found: {', '.join(matched_required) if matched_required else 'None'}')
-        lines.append(f'Missing required skills: {', '.join(missing_required) if missing_required else 'None'}')
+        lines.append(f"Required skills found: {', '.join(matched_required) if matched_required else 'None'}")
+        lines.append(f"Missing required skills: {', '.join(missing_required) if missing_required else 'None'}")
     if optional:
-        lines.append(f'Optional skills found: {', '.join(matched_optional) if matched_optional else 'None'}')
+        lines.append(f"Optional skills found: {', '.join(matched_optional) if matched_optional else 'None'}")
     if experience:
-        lines.append(f'Extracted experience: {experience} years')
+        lines.append(f"Extracted experience: {experience} years")
     if missing_required:
-        lines.append('Recommendation: review missing requirements before shortlisting.')
+        lines.append("Recommendation: review missing requirements before shortlisting.")
     else:
-        lines.append('Recommendation: strong match for the role.')
-    lines.append(f'Required coverage: {len(matched_required)}/{len(required)}')
-    lines.append(f'Optional matches: {len(matched_optional)}')
-    return ' | '.join(lines)
+        lines.append("Recommendation: strong match for the role.")
+    lines.append(f"Required coverage: {len(matched_required)}/{len(required)}")
+    lines.append(f"Optional matches: {len(matched_optional)}")
+    return " | ".join(lines)
 
 
 def score_resume(jd_text: str, resume_text: str, use_embeddings: bool = False, resume_name: str = ''):
