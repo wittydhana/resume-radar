@@ -231,10 +231,15 @@ def extract_experience_years(text: str) -> int:
 def build_explanation(resume_name: str, required: list[str], optional: list[str], matched_required: list[str], matched_optional: list[str], missing_required: list[str], similarity: float, score: float, experience: int) -> str:
     lines = [f'Candidate: {resume_name}', f'Score: {score}', f'Semantic similarity: {round(similarity, 1)}%']
     if required:
-        lines.append(f"Required skills found: {', '.join(matched_required) if matched_required else 'None'}")
-        lines.append(f"Missing required skills: {', '.join(missing_required) if missing_required else 'None'}")
+        required_text = ", ".join(matched_required) if matched_required else "None"
+        missing_text = ", ".join(missing_required) if missing_required else "None"
+
+        lines.append(f"Required skills found: {required_text}")
+        lines.append(f"Missing required skills: {missing_text}")
+
     if optional:
-        lines.append(f"Optional skills found: {', '.join(matched_optional) if matched_optional else 'None'}")
+        optional_text = ", ".join(matched_optional) if matched_optional else "None"
+        lines.append(f"Optional skills found: {optional_text}")
     if experience:
         lines.append(f"Extracted experience: {experience} years")
     if missing_required:
